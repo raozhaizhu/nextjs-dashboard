@@ -6,11 +6,9 @@ export const metadata: Metadata = {
     title: 'Login',
 };
 
-export default function LoginPage() {
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <LoginForm />
-        </Suspense>
-    );
+export default function LoginPage({ searchParams }: { searchParams: { callbackUrl?: string } }) {
+    const callbackUrl = searchParams.callbackUrl || '/dashboard';
+
+    return <LoginForm callbackUrl={callbackUrl} />;
 }
 

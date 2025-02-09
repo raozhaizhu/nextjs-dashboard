@@ -1,3 +1,4 @@
+// app/login/LoginForm.tsx (客户端组件)
 'use client';
 
 import { lusitana } from '@/app/ui/fonts';
@@ -8,8 +9,9 @@ import { useActionState } from 'react';
 import { authenticate } from '@/app/lib/actions';
 import { useSearchParams } from 'next/navigation';
 
-export default function LoginForm({ callbackUrl }: { callbackUrl: string }) {
+export default function LoginForm() {
     const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
     const [errorMessage, formAction, isPending] = useActionState(authenticate, undefined);
 
     return (
